@@ -1,0 +1,19 @@
+{
+  "name": "learning-actions",
+  "version": "1.0.0",
+  "description": "Learning actions as part of engineering onboarding tasks - https://github.com/github/eng-onboarding/blob/master/week-2/actions.md",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kotewar/learning-actions.git"
+  },
+  "author": "@kotewar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kotewar/learning-actions/issues"
+  },
+  "homepage": "https://github.com/kotewar/learning-actions#readme"
+}

@@ -8,7 +8,7 @@ jobs:
 
       - name: Cache node modules
         id: cache-npm
-        uses: kotewar/cache@25a206767714c36d5fa457ac4be0e404b9a07ad2
+        uses: actions/cache@f2ea0f25f2b1682903f47758e4d974259aa04bbc
         env:
           cache-name: cache-node-modules
         with:

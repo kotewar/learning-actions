@@ -8,7 +8,7 @@ jobs:
 
       - name: Cache node modules
         id: cache-npm
-        uses: actions/cache@f2ea0f25f2b1682903f47758e4d974259aa04bbc
+        uses: actions/cache@a2bd439f8e01bb9153bb5d198238a9879614334a
         env:
           cache-name: cache-node-modules
         with:

@@ -1,27 +1,20 @@
-name: Caching with npm
-on: push
+name: Test Compression
+on:
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Cache node modules
-        id: cache-npm
-        uses: actions/cache@f2ea0f25f2b1682903f47758e4d974259aa04bbc
-        env:
-          cache-name: cache-node-modules
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: 'node_modules'
-          key: ${{ runner.os }}-newtestbuild-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-newtestbuild-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-
-      - if: ${{ steps.cache-npm.outputs.cache-hit == false }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: npm list
-
-      - name: Install dependencies
-        run: npm install
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: ~/
+        key: cache_0601_02
+    - if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        rm -rf ~/datacache
+        mkdir -p ~/datacache
+        for y in {0..1};do openssl rand -out ~/datacache/data$y  -base64 $(( 50 * 2**20 * 3/4 )); done 
+        du -sh ~/datacache

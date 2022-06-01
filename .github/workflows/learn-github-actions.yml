@@ -11,10 +11,4 @@ jobs:
       id: cache
       with:
         path: ~/
-        key: cache_0601_02
-    - if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        rm -rf ~/datacache
-        mkdir -p ~/datacache
-        for y in {0..1};do openssl rand -out ~/datacache/data$y  -base64 $(( 50 * 2**20 * 3/4 )); done 
-        du -sh ~/datacache
+        key: cache_0601_03

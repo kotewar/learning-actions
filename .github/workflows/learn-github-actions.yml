@@ -2,9 +2,12 @@ name: Test Compression
 on:
   push:
 jobs:
-  build:
-    name: Build Test
+  unit-tests:
+    
     runs-on: ubuntu-latest
+
+    container: openjdk:17-jdk-alpine
+
     steps:
       - name: Setup git
         working-directory: ""
@@ -18,10 +21,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            test/.m2/repository
-          key: testKey2
+            ${{ github.workspace }}/.m2/repository
+          key: test
 
       - name: Run liquibase update
         run: |
-          mkdir -pv test/.m2/repository/
-          echo "hello" > test/.m2/repository/hello.txt
+          mkdir -pv ${{ github.workspace }}/.m2/repository/
+          echo "hello" > ${{ github.workspace }}/.m2/repository/hello.txt

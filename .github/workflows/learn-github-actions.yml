@@ -22,3 +22,4 @@ jobs:
         path: ${{ github.workspace }}/node_modules
         key: ${{ runner.os }}-build1-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
         restore-keys: ${{ runner.os }}-build1-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    - run: npm install

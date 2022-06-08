@@ -18,10 +18,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ${{ github.workspace }}/.m2/repository
-          key: testKey
+            /test/.m2/repository
+          key: test
 
       - name: Run liquibase update
         run: |
-          mkdir -pv ${{ github.workspace }}/.m2/repository/
-          echo "hello" > ${{ github.workspace }}/.m2/repository/hello.txt
+          mkdir -pv test/.m2/repository/
+          echo "hello" > test/.m2/repository/hello.txt

@@ -19,7 +19,7 @@ jobs:
         with:
           path: |
             test/.m2/repository
-          key: test
+          key: testKey2
 
       - name: Run liquibase update
         run: |

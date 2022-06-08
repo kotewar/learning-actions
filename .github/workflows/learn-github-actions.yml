@@ -9,7 +9,7 @@ jobs:
       - name: Setup git
         working-directory: ""
         run: |
-          apk add -q --no-cache --no-progress git yq tar
+#          apk add -q --no-cache --no-progress git yq tar
           git config --global --add safe.directory $GITHUB_WORKSPACE
 
       - name: Check out repository code

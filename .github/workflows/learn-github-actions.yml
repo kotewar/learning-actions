@@ -5,7 +5,7 @@ jobs:
   build:
     name: Build Test
     runs-on: ubuntu-latest
-    container: openjdk:17-jdk-alpine
+    container: debian:stable-slim
     steps:
     - uses: actions/checkout@v2
     - uses: actions/github-script@v5

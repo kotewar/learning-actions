@@ -4,22 +4,25 @@ on:
 jobs:
   build:
     name: Build Test
-    strategy:
-      matrix:
-        runs-on: [ubuntu-latest, windows-latest, macos-latest]
-      fail-fast: false
-    runs-on: ${{ matrix.runs-on }}
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/github-script@v5
-      with:
-        script: |
-          console.log("process.env['RUNNER_TEMP']="+process.env['RUNNER_TEMP']);
-          console.log("process.cwd()="+process.cwd());
-          console.log("Home directory = "+require('os').homedir());
-    - uses: actions/cache@v3.0.2
-      id: cache
-      with:
-        path: ${{ github.workspace }}/node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Setup git
+        working-directory: ""
+        run: |
+          apk add -q --no-cache --no-progress git yq tar
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Cache maven packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/.m2/repository
+          key: test
+
+      - name: Run liquibase update
+        run: |
+          mkdir -pv ${{ github.workspace }}/.m2/repository/
+          echo "hello" > ${{ github.workspace }}/.m2/repository/hello.txt

@@ -14,6 +14,8 @@ jobs:
           console.log("process.env['RUNNER_TEMP']="+process.env['RUNNER_TEMP']);
           console.log("process.cwd()="+process.cwd());
           console.log("Home directory = "+require('os').homedir());
+          console.log(process.env['github.workspace']);
+          console.log(process.env['GITHUB_WORKSPACE']);
     - uses: actions/cache@v3
       id: cache
       with:

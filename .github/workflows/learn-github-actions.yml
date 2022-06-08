@@ -19,7 +19,7 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/.m2/repository
-          key: test2
+          key: testKey
 
       - name: Run liquibase update
         run: |
